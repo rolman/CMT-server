@@ -14,19 +14,19 @@ public class BusinessUnitController {
     }
 
     @GetMapping("/businessUnits")
-    @CrossOrigin(origins= "http://localhost:4200")
+    @CrossOrigin
     public Collection<BusinessUnit> businessUnits() {
         return repository.findAll().stream().collect(Collectors.toList());
     }
 
     @GetMapping(path = {"/businessUnits/{id}"})
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin
     public BusinessUnit findOne(@PathVariable("id") long id){
         return repository.findById(id).get();
     }
 
     @PostMapping("/businessUnits")
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin
     public BusinessUnit newBusinessUnit(@RequestBody BusinessUnit newBusinessUnit){
         return repository.save(newBusinessUnit);
     }

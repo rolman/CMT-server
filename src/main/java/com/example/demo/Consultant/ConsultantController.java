@@ -21,13 +21,13 @@ public class ConsultantController {
     }
 
     @GetMapping("/consultants")
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin
     public Collection<Consultant> consultants() {
         return repository.findAll().stream().collect(Collectors.toList());
     }
 
     @PostMapping("/consultants")
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin
     public Consultant newConsultant(@RequestBody Consultant newConsultant){
         return repository.save(newConsultant);
     }
@@ -40,7 +40,7 @@ public class ConsultantController {
 
 
     @RequestMapping(value = "/consultants/{id}", method = RequestMethod.PUT)
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin
     public @ResponseBody
     Consultant updateConsultant(@RequestBody Consultant consultant){
         System.out.println(info(consultant.toString()));
@@ -48,7 +48,7 @@ public class ConsultantController {
     }
 
     @RequestMapping(value = "/consultants/{id}", method = RequestMethod.DELETE)
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin
     public ResponseEntity<Void> deleteConsultantById(@PathVariable("id") long id){
         repository.deleteById(id);
         return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);

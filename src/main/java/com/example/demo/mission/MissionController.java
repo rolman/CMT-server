@@ -26,13 +26,13 @@ public class MissionController {
 
 
     @GetMapping("/consultants/{id}/missions")
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin
     public Collection<Mission> getAllMissionsByConsultantId(@PathVariable (value = "id") Long consultantId, Pageable pageable) {
         return repository.findByConsultantId(consultantId, pageable).getContent();
     }
 
     @PostMapping("/consultants/{consultantId}/missions")
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin
     public Mission newMission(@RequestBody Mission newMission,
                               @PathVariable (value = "consultantId") Long consultantId
                               ){
@@ -49,7 +49,7 @@ public class MissionController {
     }
 
     @GetMapping("/consultants/{consultantId}/missions/{id}") //Find a specific mission of a specific consultant.
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin
     public Mission getOneMissionByConsultantId(@PathVariable (value = "consultantId") Long consultantId,
                                                            @PathVariable (value = "id") Long id,
                                                            Pageable pageable) {
@@ -57,14 +57,14 @@ public class MissionController {
     }
 
     @RequestMapping(value = "/consultants/{consultantId}/missions/{id}", method = RequestMethod.PUT)
-    @CrossOrigin(origins="http://localhost:4200")
+    @CrossOrigin
     public Mission updateMission(@RequestBody Mission mission){
         System.out.println(mission.toString());
         return repository.save(mission);
     }
 
     @RequestMapping(value = "/consultants/{consultantId}/missions/{id}", method= RequestMethod.DELETE)
-    @CrossOrigin(origins="http://localhost:4200")
+    @CrossOrigin
     public ResponseEntity<Void> deleteMissionById(@PathVariable("id") long id){
         repository.deleteById(id);
         return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
