@@ -33,7 +33,7 @@ public class ConsultantController {
     }
 
     @GetMapping(path = {"/consultants/{id}"})
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin
     public Consultant findOne(@PathVariable("id") long id){
         return repository.findById(id).get();
     }
